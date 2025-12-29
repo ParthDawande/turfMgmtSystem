@@ -1,9 +1,17 @@
 package com.example.turfMgmt.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
+@Entity
+@Table(name = "complaints")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Complaint {
 
     @Id
@@ -32,6 +40,7 @@ public class Complaint {
 
     private LocalDateTime createdAt;
 
+    @PrePersist
     public void onCreate(){
         this.createdAt = LocalDateTime.now();
         this.status = CompalintStatus.OPEN;
